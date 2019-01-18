@@ -8,10 +8,16 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from './../environments/environment';
+import { HeaderComponent } from './header/header.component';
+import { ChoiceComponent } from './choice/choice.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    ChoiceComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
