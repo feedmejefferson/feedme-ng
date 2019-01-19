@@ -1,20 +1,18 @@
 <header>
   <!-- Fixed navbar -->
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">Fixed navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-md navbar-light fixed-top">
+    <a class="navbar-brand py-0" href="#">
+      <img class="logo" src="assets/chefjefferson.svg" alt="chef hat" />
+      <span class="banner feedme">FeedMe</span>
+      <span class="banner jefferson">Jefferson</span>
+    </a>
+    <button class="navbar-toggler" type="button" [attr.aria-expanded]="!isCollapsed" (click)="isCollapsed = !isCollapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Blog</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/about">About</a>
+    <div class="navbar-collapse" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav ml-auto">
+        <li *ngFor="let link of links" class="nav-item ml-auto" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >
+          <a class="nav-link" routerLink="{{link.path}}">{{link.display}}</a>
         </li>
       </ul>
     </div>

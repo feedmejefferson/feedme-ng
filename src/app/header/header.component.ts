@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  public isCollapsed = true;
+  public links = [
+    { path: '', display: 'Home' },
+    { path: 'about', display: 'About' }
+  ];
+
   constructor() { }
 
   ngOnInit() {
