@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  baseFoodImageUrl: "/assets/images/",
   firebase: {
     apiKey: "AIzaSyCtjvY1oF7VFBpq1rWDt6bjfYKr1_OiHMk",
     authDomain: "feedme-stage.firebaseapp.com",
