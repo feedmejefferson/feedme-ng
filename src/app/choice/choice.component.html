@@ -1,11 +1,10 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
-  <div class="container">
-    <h1 class="mt-5">What are you hungry for?</h1>
-    <div *ngFor="let food of choice">
-      <img [src]="food.url" />
+    <div class="food-canvas">
+      <a *ngFor="let food of choice" href="#">
+        <img [src]="food.url" />
+      </a>
     </div>
-  </div>
 </main>
 
 <footer class="footer mt-auto py-3">
