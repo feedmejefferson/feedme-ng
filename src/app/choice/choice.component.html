@@ -7,8 +7,9 @@
     </div>
 </main>
 
-<footer class="footer mt-auto py-3">
-  <div class="container">
-    <span class="text-muted">Attribution details go somewhere like here.</span>
+<footer>
+  <div class="attribution">
+    <p><strong>Licences and Attributions:</strong></p>
+    <p *ngFor="let food of choice" [innerHTML]="food.attribution | async"></p>
   </div>
 </footer>

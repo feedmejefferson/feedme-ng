@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 //import { AngularFireDatabaseModule } from '@angular/fire/database';
 //import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { AboutComponent } from './about/about.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     //    AngularFireModule.initializeApp(environment.firebase),
     //AngularFireDatabaseModule,
     //AngularFireAuthModule,

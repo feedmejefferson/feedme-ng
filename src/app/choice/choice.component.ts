@@ -20,4 +20,6 @@ export class ChoiceComponent implements OnInit {
   getChoice(): void {
     this.choice = this.foodService.getChoice();
   }
+
 }
+

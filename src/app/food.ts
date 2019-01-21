@@ -1,4 +1,8 @@
+import { Observable } from 'rxjs';
+
 export class Food {
   id: number;
-  url: string;
+  imageFileName: string;
+  url?: string;
+  attribution?: Observable<string>;
 }
