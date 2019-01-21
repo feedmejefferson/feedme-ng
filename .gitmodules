@@ -1,4 +1,0 @@
-[submodule "staging"]
-	path = staging
-	url = git@github.com:feedmejefferson/staging.git
-  branch = master
