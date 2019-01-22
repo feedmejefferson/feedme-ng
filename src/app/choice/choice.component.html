@@ -10,6 +10,6 @@
 <footer>
   <div class="attribution">
     <p><strong>Licences and Attributions:</strong></p>
-    <p *ngFor="let food of choice$ | async" [innerHTML]="food.attribution | async"></p>
+    <p *ngFor="let food of choice$ | async" [innerHTML]="food.attribution$ | async"></p>
   </div>
 </footer>
