@@ -6,6 +6,9 @@ import { environment } from '../environments/environment';
 const baseUrl: string = environment.baseFoodImageUrl;
 const baseAttributionUrl: string = baseUrl + 'attributions/';
 const attributionHeaders = { responseType: 'text' };
+export function getRandomIndex(setSize: number): number {
+  return Math.floor(Math.random() * setSize);
+}
 
 @Injectable({
   providedIn: 'root'
@@ -33,9 +36,14 @@ export class FoodService {
   getChoice(): Promise<Array<Food>> {
     return new Promise<Array<Food>>((resolve, reject) => {
       this.menu$.then(menu => {
+        const indexA = getRandomIndex(menu.length);    
+        let indexB = getRandomIndex(menu.length);
+        while(indexB === indexA) {
+          indexB = getRandomIndex(menu.length);
+        }
         let choice: Food[] = [];
-        choice.push(this.prepFood(menu[0]));
-        choice.push(this.prepFood(menu[1]));
+        choice.push(this.prepFood(menu[indexA]));
+        choice.push(this.prepFood(menu[indexB]));
         resolve(choice);
       }).catch(err => {
         console.error("Error loading menu");
