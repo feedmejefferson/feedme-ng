@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Food } from './food';
-import { MENU } from './mock-foods';
 import { environment } from '../environments/environment';
 
 const baseUrl: string = environment.baseFoodImageUrl;
@@ -14,24 +13,35 @@ const attributionHeaders = { responseType: 'text' };
 
 export class FoodService {
 
-  constructor(private http: HttpClient) { }
-
-  resolve(food: Food): Food {
+  menu$: Promise<Array<string>>;
+  
+  constructor(private http: HttpClient) { 
+    this.menu$ = this.http.get<Array<string>>(baseUrl + 'menu.json').toPromise();
+  }
+  
+  prepFood(image: string): Food {
     return {
-      ...food, 
-      url: `${baseUrl}${food.imageFileName}`,
-      attribution: this.http.get(
-        baseAttributionUrl + food.imageFileName + ".txt", 
+      image: image, 
+      url: `${baseUrl}${image}`,
+      attribution$: this.http.get(
+        baseAttributionUrl + image + ".txt", 
         {responseType: 'text'}
       )
     };
   }
 
-  getChoice(): Food[] {
-    let choice: Food[] = [];
-    choice.push(this.resolve(MENU[0]));
-    choice.push(this.resolve(MENU[1]));
-    return choice;
+  getChoice(): Promise<Array<Food>> {
+    return new Promise<Array<Food>>((resolve, reject) => {
+      this.menu$.then(menu => {
+        let choice: Food[] = [];
+        choice.push(this.prepFood(menu[0]));
+        choice.push(this.prepFood(menu[1]));
+        resolve(choice);
+      }).catch(err => {
+        console.error("Error loading menu");
+        reject(err);
+      });
+    });
   }
   
 }

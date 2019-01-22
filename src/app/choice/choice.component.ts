@@ -9,7 +9,7 @@ import { FoodService } from '../food.service';
 })
 export class ChoiceComponent implements OnInit {
 
-  choice: Food[];
+  choice$: Promise<Array<Food>>;
 
   constructor(private foodService: FoodService) { }
 
@@ -18,7 +18,7 @@ export class ChoiceComponent implements OnInit {
   }
   
   getChoice(): void {
-    this.choice = this.foodService.getChoice();
+    this.choice$ = this.foodService.getChoice();
   }
 
 }

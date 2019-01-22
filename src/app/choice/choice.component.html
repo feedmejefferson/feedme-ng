@@ -1,7 +1,7 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="food-canvas">
-      <a *ngFor="let food of choice" href="#">
+      <a *ngFor="let food of choice$ | async" href="#">
         <img [src]="food.url" />
       </a>
     </div>
@@ -10,6 +10,6 @@
 <footer>
   <div class="attribution">
     <p><strong>Licences and Attributions:</strong></p>
-    <p *ngFor="let food of choice" [innerHTML]="food.attribution | async"></p>
+    <p *ngFor="let food of choice$ | async" [innerHTML]="food.attribution | async"></p>
   </div>
 </footer>
