@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { environment } from './../environments/environment';
 import { HeaderComponent } from './header/header.component';
 import { ChoiceComponent } from './choice/choice.component';
+import { ChoiceRedirect } from './choice/choice.redirect';
 import { AboutComponent } from './about/about.component';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AboutComponent } from './about/about.component';
     AppComponent,
     HeaderComponent,
     ChoiceComponent,
+    ChoiceRedirect,
     AboutComponent
   ],
   imports: [
