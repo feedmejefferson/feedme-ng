@@ -2,5 +2,18 @@
 
 /* make sure page content leaves space for absolute positioned header */
 main { padding-top: 4rem; }
-
+footer {
+  background-color: #f8f9fad0; 
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  font-size: 80%;
+  color: #666666;
+}
+footer h3 {
+  color: #4d4d4d;
+  font-size: 120%;
+}
+footer h4 { 
+  font-size:100%; 
+}
 @import "~bootstrap/dist/css/bootstrap.css"
