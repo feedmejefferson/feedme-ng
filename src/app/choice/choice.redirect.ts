@@ -18,7 +18,9 @@ export class ChoiceRedirect implements OnInit {
         '/choice',
         node.children[0].value, 
         node.children[1].value
-      ]);
+      ], { 
+        replaceUrl: true 
+      });
     });
   }
 }
