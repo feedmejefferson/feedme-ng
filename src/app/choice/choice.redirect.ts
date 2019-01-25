@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FoodService } from '../food.service';
+import { ChoiceService } from '../choice.service';
 import { Router } from '@angular/router'; 
 
 @Component({
@@ -8,16 +8,16 @@ import { Router } from '@angular/router';
 })
 export class ChoiceRedirect implements OnInit {
 
-  constructor(private foodService: FoodService,
+  constructor(private choiceService: ChoiceService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.foodService.getNode().then(node => {
+    this.choiceService.getChoice().then(choice => {
       this.router.navigate([
         '/choice',
-        node.children[0].value, 
-        node.children[1].value
+        choice[0], 
+        choice[1]
       ], { 
         replaceUrl: true 
       });

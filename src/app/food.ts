@@ -1,8 +1,8 @@
 import { Observable, EMPTY } from 'rxjs';
 
 export class Food {
-  image: string;
+  id: string;
   imageUrl?: string;
   attribution$?: Observable<string> = EMPTY;
-  choiceUrl$?: Promise<string>;
+  //choiceUrl$?: Promise<string>;
 }

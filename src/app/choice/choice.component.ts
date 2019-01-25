@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Food } from '../food';
 import { FoodService } from '../food.service';
+import { ChoiceService } from '../choice.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'; 
-import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -10,18 +10,17 @@ import { filter } from 'rxjs/operators';
   templateUrl: './choice.component.html',
   styleUrls: ['./choice.component.scss']
 })
+
 export class ChoiceComponent implements OnInit {
 
-  choice$: Promise<Array<Food>>;
+  choice: FoodOption[];
   private navEndSubscription;
 
   constructor(private route: ActivatedRoute,
     private foodService: FoodService,
-    private location: Location,
+    private choiceService: ChoiceService,
     private router: Router
-  ) { 
-  }
-
+  ) { }
 
   ngOnInit() {
     this.getChoice();
@@ -37,10 +36,20 @@ export class ChoiceComponent implements OnInit {
   }
 
   getChoice(): void {
-    const id1 = this.route.snapshot.paramMap.get('id1');
-    const id2 = this.route.snapshot.paramMap.get('id2');
-    this.choice$ = this.foodService.getChoice(id1, id2);
+    let ids: string[] = [];
+    ids.push(this.route.snapshot.paramMap.get('id1'));
+    ids.push(this.route.snapshot.paramMap.get('id2'));
+    this.choice = ids.map(id => this.foodService.getFood(id))
+    .map(food => {
+      return {
+        ...food, 
+        choiceUrl$: this.choiceService.getChoice().then(c => "/choice/" + c.join("/")) 
+      };
+    });
   }
 
 }
 
+class FoodOption extends Food {
+  choiceUrl$: Promise<string>
+}
