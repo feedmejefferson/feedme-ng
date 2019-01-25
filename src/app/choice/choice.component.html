@@ -1,7 +1,7 @@
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
     <div class="food-canvas">
-      <a *ngFor="let food of choice" [routerLink]="food.choiceUrl$ | async" (click)="getChoice()" >
+      <a *ngFor="let food of choice" [routerLink]="food.choiceUrl$ | async" >
         <img [src]="food.imageUrl" />
       </a>
     </div>

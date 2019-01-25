@@ -16,6 +16,7 @@ export class ChoiceRedirect implements OnInit {
     this.choiceService.getChoice().then(choice => {
       this.router.navigate([
         '/choice',
+        0,
         choice[0], 
         choice[1]
       ], { 

@@ -37,13 +37,14 @@ export class ChoiceComponent implements OnInit {
 
   getChoice(): void {
     let ids: string[] = [];
+    let step: number = +this.route.snapshot.paramMap.get('step');
     ids.push(this.route.snapshot.paramMap.get('id1'));
     ids.push(this.route.snapshot.paramMap.get('id2'));
     this.choice = ids.map(id => this.foodService.getFood(id))
     .map(food => {
       return {
         ...food, 
-        choiceUrl$: this.choiceService.getChoice().then(c => "/choice/" + c.join("/")) 
+        choiceUrl$: this.choiceService.getChoice().then(c => `/choice/${step+1}/` + c.join("/")) 
       };
     });
   }
