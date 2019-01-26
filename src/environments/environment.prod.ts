@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   baseFoodImageUrl: "http://www.feedmejefferson.com/images/",
+  appetiteUrl: "https://us-central1-feedme-stage.cloudfunctions.net/appetite",
   firebase: {
     apiKey: "AIzaSyCtjvY1oF7VFBpq1rWDt6bjfYKr1_OiHMk",
     authDomain: "feedme-stage.firebaseapp.com",
