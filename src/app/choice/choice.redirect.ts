@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ChoiceService } from '../choice.service';
+import { DecisionTreeService } from '../decision-tree.service';
+//import { ChoiceService } from '../choice.service';
 import { Router } from '@angular/router'; 
 
 @Component({
@@ -8,17 +9,17 @@ import { Router } from '@angular/router';
 })
 export class ChoiceRedirect implements OnInit {
 
-  constructor(private choiceService: ChoiceService,
+  constructor(private choiceService: DecisionTreeService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.choiceService.getChoice().then(choice => {
+    this.choiceService.getChoice(-1,0).then(choice => {
       this.router.navigate([
         '/choice',
-        0,
         choice[0], 
-        choice[1]
+        choice[1],
+        choice[2]
       ], { 
         replaceUrl: true 
       });
