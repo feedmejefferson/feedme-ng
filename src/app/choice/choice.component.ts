@@ -35,7 +35,7 @@ export class ChoiceComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.postAppetite();
+    this.appetiteService.flush();
     this.navEndSubscription.unsubscribe(); 
   }
 
@@ -63,9 +63,6 @@ export class ChoiceComponent implements OnInit {
     });
   }
 
-  postAppetite(): void {
-    this.appetiteService.postAppetite();
-  }
 }
 
 class FoodOption extends Food {
