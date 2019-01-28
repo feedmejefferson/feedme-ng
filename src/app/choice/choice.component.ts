@@ -16,7 +16,6 @@ export class ChoiceComponent implements OnInit {
 
   choice: FoodOption[];
   private navEndSubscription;
-  private history: any[] = [];
   private start: number = Date.now();
 
   constructor(private route: ActivatedRoute,
@@ -56,19 +55,16 @@ export class ChoiceComponent implements OnInit {
 
   logChoice(id: string): void {
     let step: number = +this.route.snapshot.paramMap.get('step');
-    this.history.push({
+    this.appetiteService.postChosen({
       step: step,
-      time: Date.now()-this.start,
       chosen: id, 
-      notChosen: (id==this.choice[0].id) ? this.choice[1].id : this.choice[0].id 
+      notChosen: (id==this.choice[0].id) ? this.choice[1].id : this.choice[0].id,
+      position: (id==this.choice[0].id) ? 0 : 1
     });
-    if(this.history.length % 8 == 7) {
-      this.postAppetite();
-    }
   }
 
   postAppetite(): void {
-    this.appetiteService.postAppetite(this.history);
+    this.appetiteService.postAppetite();
   }
 }
 
