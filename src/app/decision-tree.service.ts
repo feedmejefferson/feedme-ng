@@ -45,10 +45,23 @@ export class DecisionTreeService {
         } else {
           [0,1].map(index => {
             let name: string;
-            console.log(JSON.stringify(node.children));
             if(node.children[index]){
               //this branch has four child options, randomly grab one of the middle ones
-              name=TreeScaler.bisectRight(node.children[index]).value;
+              switch(getRandomIndex(3)) {
+                case 0: {
+                  name=TreeScaler.bisectRight(<Branch><unknown>node.children[index]).value;
+                  break;
+                }
+                case 1: {
+                  name=TreeScaler.bisectLeft(<Branch><unknown>node.children[index]).value;
+                  break;
+                }
+                case 2: {
+                  let randomAddress = TreeScaler.integerToAddress(getRandomIndex(2^30));
+                  name=TreeScaler.findLeafForPattern(<Branch><unknown>node.children[index],[],randomAddress).value;
+                  break;
+                }
+              }
             } else {
               //this is a terminal branch, revert to the nonrandom logic described above
               name=(<Leaf><unknown>node).value;
