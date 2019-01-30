@@ -14,15 +14,8 @@ export class ChoiceRedirect implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.choiceService.getChoice(0,1).then(choice => {
-      this.router.navigate([
-        '/choice',
-        choice[0], 
-        choice[1],
-        choice[2]
-      ], { 
-        replaceUrl: true 
-      });
+    this.choiceService.getChoiceRoute(0,1).then(choiceRoute => {
+      this.router.navigate(choiceRoute, { replaceUrl: true });
     });
   }
 }

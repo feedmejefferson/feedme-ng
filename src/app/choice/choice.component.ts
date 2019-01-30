@@ -56,7 +56,7 @@ export class ChoiceComponent implements OnInit {
     .map((food, side) => {
       return {
         ...food, 
-        choiceUrl$: this.choiceService.getChoice(step,side).then(c => `/choice/` + c.join("/")) 
+        choiceUrl$: this.choiceService.getChoiceRoute(step,side).then(c => '/' + c.join("/")) 
       };
     });
   }

@@ -26,24 +26,22 @@ export class DecisionTreeService {
    * @step: this needs to be the index of the node in the tree map
    * @branch: is this the first (0) food option to be offered, or the second (1)
    */
-  getChoice(step: number, branch: number): Promise<Array<string>> {
+  getChoiceRoute(step: number, branch: number): Promise<Array<string>> {
     return new Promise<Array<string>>((resolve, reject) => { 
       this.treeMap$.then(treeMap => {
         // First we get the new step or node address for the forwarding route
         // This will always be double the current node address plus 0 or 1 for
         // the input side/branch number
         let nodeAddress = step * 2 + branch;
-        let choice: string[] = [];
-        choice.push(<unknown>nodeAddress as string);
+        let choiceRoute: string[] = [ 'choice' ];
+        choiceRoute.push(<unknown>nodeAddress as string);
         // Now get the node that this route will forward to
         let node: Branch = TreeScaler.getBranchAt(treeMap, TreeScaler.integerToAddress(nodeAddress)) as Branch;
         // and for each of its children, get a representative image
         // unless of course it already happens to be a terminal node...
-        // in which case (for now) we just want to return an image of the food itself
-        // with a link to the same page (including a step/address that doesn't change)
+        // for now we'll just reroute terminal nodes to the food page for that food
         if(!node.children) {
-          choice.push((<Leaf><unknown>node).value);
-          resolve(choice); // this will route to a single image url
+          resolve([ 'food' , (<Leaf><unknown>node).value ]); 
         } else {
           [0,1].map(index => {
             let name: string;
@@ -55,10 +53,10 @@ export class DecisionTreeService {
               //this is a terminal branch, revert to the nonrandom logic described above
               name=(<Leaf><unknown>node).value;
             }
-            choice.push(name);
+            choiceRoute.push(name);
           });
         
-          resolve(choice)
+          resolve(choiceRoute)
         }  
       });
     });
