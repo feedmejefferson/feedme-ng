@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { ChoiceComponent } from './choice/choice.component';
 import { ChoiceRedirect } from './choice/choice.redirect';
 import { AboutComponent } from './about/about.component';
+import { FoodComponent } from './food/food.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AboutComponent } from './about/about.component';
     HeaderComponent,
     ChoiceComponent,
     ChoiceRedirect,
-    AboutComponent
+    AboutComponent,
+    FoodComponent
   ],
   imports: [
     BrowserModule,

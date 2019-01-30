@@ -1,0 +1,15 @@
+<!-- Begin page content -->
+<main role="main" class="flex-shrink-0">
+    <div class="food-canvas">
+      <div class="placeholder">
+        <img [src]="food.imageUrl" />
+      </div>
+    </div>
+</main>
+
+<footer>
+  <div class="attribution">
+    <p><strong>Licences and Attributions:</strong></p>
+    <p [innerHTML]="food.attribution$ | async"></p>
+  </div>
+</footer>
