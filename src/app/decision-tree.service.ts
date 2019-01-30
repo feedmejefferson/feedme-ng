@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { FoodNode } from './food-node';
 import { Observable } from 'rxjs';
+import { Leaf, Branch, MappedLeaf, TreeScaler } from './decision-tree';
 
 const baseUrl: string = environment.baseFoodImageUrl;
 
@@ -15,10 +16,10 @@ export function getRandomIndex(setSize: number): number {
 })
 export class DecisionTreeService {
 
-  treeMap$: Promise<Array<FoodNode>>;
+  treeMap$: Promise<Branch>;
 
   constructor(private http: HttpClient) { 
-    this.treeMap$ = this.http.get<Array<FoodNode>>(baseUrl + 'tree-map.json').toPromise();
+    this.treeMap$ = this.http.get<Branch>(baseUrl + 'tree.json').toPromise();
   }
 
   /**
@@ -28,55 +29,37 @@ export class DecisionTreeService {
   getChoice(step: number, branch: number): Promise<Array<string>> {
     return new Promise<Array<string>>((resolve, reject) => { 
       this.treeMap$.then(treeMap => {
-        let node: FoodNode;
+        // First we get the new step or node address for the forwarding route
+        // This will always be double the current node address plus 0 or 1 for
+        // the input side/branch number
+        let nodeAddress = step * 2 + branch;
         let choice: string[] = [];
-        if(step<0) {
-          //handle the root bootstrap request for initial redirect
-          node = treeMap[0];
-          choice.push('0');
+        choice.push(<unknown>nodeAddress as string);
+        // Now get the node that this route will forward to
+        let node: Branch = TreeScaler.getBranchAt(treeMap, TreeScaler.integerToAddress(nodeAddress)) as Branch;
+        // and for each of its children, get a representative image
+        // unless of course it already happens to be a terminal node...
+        // in which case (for now) we just want to return an image of the food itself
+        // with a link to the same page (including a step/address that doesn't change)
+        if(!node.children) {
+          choice.push((<Leaf><unknown>node).value);
+          resolve(choice); // this will route to a single image url
         } else {
-          //step indicates the treemap index of the currently displayed choice
-          //we need to return the next choice (set of options) for one of it's 
-          //children (the one specified by branch)
-          node = treeMap[step];
-          if(node.children[branch]) {
-            choice.push(`${node.children[branch]}`);
-            node = treeMap[node.children[branch]];
-          } else {
-            // this child is a terminal branch, if they choose it, there are no more
-            // options, have to decide what to do
-            // TODO: for now let's just send them back to the start
-            node = treeMap[0];
-            choice.push('0');
-          }
-        } 
-        // Now we want to add in some variety, we want to choose a food item randomly
-        // from each of this nodes child branches, however, if one of the child branches
-        // is terminal (meaning it represents a single food item) then randomness wouldn't
-        // add any value and we can simply take the image name from the upper or lower half
-        // of the current nodes names.
-        // If we didn't care about variety, we could always simply return:
-        //
-        //choice.push(node.names[0]);
-        //choice.push(node.names[2]);
-        //
-        //or more programatically:
-        //
-        //[0,1].map(index => choice.push(node.names[index*2]));
+          [0,1].map(index => {
+            let name: string;
+            console.log(JSON.stringify(node.children));
+            if(node.children[index]){
+              //this branch has four child options, randomly grab one of the middle ones
+              name=TreeScaler.bisectRight(node.children[index]).value;
+            } else {
+              //this is a terminal branch, revert to the nonrandom logic described above
+              name=(<Leaf><unknown>node).value;
+            }
+            choice.push(name);
+          });
         
-        [0,1].map(index => {
-          let name: string;
-          if(node.children[index]){
-            //this branch has four child options, randomly grab one of the middle ones
-            name=treeMap[node.children[index]].names[getRandomIndex(2)+1];
-          } else {
-            //this is a terminal branch, revert to the nonrandom logic described above
-            name=node.names[index*2]
-          }
-          choice.push(name);
-        });
-        
-        resolve(choice)
+          resolve(choice)
+        }  
       });
     });
   }

@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'choice', component: ChoiceRedirect },
   { path: '', component: ChoiceRedirect, pathMatch: 'full' },
   { path: 'choice/:step/:id1/:id2', component: ChoiceComponent },
+  { path: 'choice/:step/:id1', component: ChoiceComponent },
   //{ path: '', redirectTo: '/choice', pathMatch: 'full' }
 ];
 

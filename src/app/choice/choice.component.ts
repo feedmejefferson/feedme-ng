@@ -49,7 +49,9 @@ export class ChoiceComponent implements OnInit {
     let step: number = +this.route.snapshot.paramMap.get('step');
     let ids: string[] = [];
     ids.push(this.route.snapshot.paramMap.get('id1'));
-    ids.push(this.route.snapshot.paramMap.get('id2'));
+    if(this.route.snapshot.paramMap.get('id2')) {;
+      ids.push(this.route.snapshot.paramMap.get('id2'));
+    }
     this.choice = ids.map(id => this.foodService.getFood(id))
     .map((food, side) => {
       return {
