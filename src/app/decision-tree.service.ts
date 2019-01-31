@@ -33,7 +33,7 @@ export class DecisionTreeService {
         // This will always be double the current node address plus 0 or 1 for
         // the input side/branch number
         let nodeAddress = step * 2 + branch;
-        let choiceRoute: string[] = [ 'choice' ];
+        let choiceRoute: string[] = [ 'cb' ];
         choiceRoute.push(<unknown>nodeAddress as string);
         // Now get the node that this route will forward to
         let node: Branch = TreeScaler.getBranchAt(treeMap, TreeScaler.integerToAddress(nodeAddress)) as Branch;
@@ -47,20 +47,11 @@ export class DecisionTreeService {
             let name: string;
             if(node.children[index]){
               //this branch has four child options, randomly grab one of the middle ones
-              switch(getRandomIndex(3)) {
-                case 0: {
-                  name=TreeScaler.bisectRight(<Branch><unknown>node.children[index]).value;
-                  break;
-                }
-                case 1: {
-                  name=TreeScaler.bisectLeft(<Branch><unknown>node.children[index]).value;
-                  break;
-                }
-                case 2: {
-                  let randomAddress = TreeScaler.integerToAddress(getRandomIndex(2^30));
-                  name=TreeScaler.findLeafForPattern(<Branch><unknown>node.children[index],[],randomAddress).value;
-                  break;
-                }
+              let child: Branch = <Branch><unknown>node.children[index]
+              if(getRandomIndex(2)) {
+                name=TreeScaler.bisectRight(child).value;
+              } else {
+                name=TreeScaler.bisectLeft(child).value;
               }
             } else {
               //this is a terminal branch, revert to the nonrandom logic described above

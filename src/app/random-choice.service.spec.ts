@@ -1,15 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RandomChoiceService } from './random-choice.service';
 
-import { ChoiceService } from './choice.service';
-
-describe('ChoiceService', () => {
+describe('RandomChoiceService', () => {
   beforeEach(() => TestBed.configureTestingModule({
     imports: [ HttpClientTestingModule ]
   }));
 
   it('should be created', () => {
-    const service: ChoiceService = TestBed.get(ChoiceService);
+    const service: RandomChoiceService = TestBed.get(RandomChoiceService);
     expect(service).toBeTruthy();
   });
 });

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DecisionTreeService } from '../decision-tree.service';
-//import { ChoiceService } from '../choice.service';
-import { Router } from '@angular/router'; 
+import { Component, OnInit, Injector } from '@angular/core';
+import { ChoiceService } from '../choice.service';
+import { Router, ActivatedRoute } from '@angular/router'; 
 
 @Component({
   selector: 'app-choice-redirect',
@@ -9,9 +8,15 @@ import { Router } from '@angular/router';
 })
 export class ChoiceRedirect implements OnInit {
 
-  constructor(private choiceService: DecisionTreeService,
+  private choiceService: ChoiceService;
+
+  constructor(private route: ActivatedRoute,
+    private injector: Injector,
     private router: Router
-  ) { }
+  ) {
+    const serviceToken = route.snapshot.data['requiredService'];
+    this.choiceService = injector.get(serviceToken);
+  }
 
   ngOnInit() {
     this.choiceService.getChoiceRoute(0,1).then(choiceRoute => {

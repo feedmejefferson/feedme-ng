@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { Food } from '../food';
 import { FoodService } from '../food.service';
 import { AppetiteService } from '../appetite.service';
-import { DecisionTreeService } from '../decision-tree.service';
-//import { ChoiceService } from '../choice.service';
+import { ChoiceService } from '../choice.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'; 
 import { filter } from 'rxjs/operators';
 
@@ -18,13 +17,17 @@ export class ChoiceComponent implements OnInit {
   choice: FoodOption[];
   private navEndSubscription;
   private start: number = Date.now();
+  private choiceService: ChoiceService;
 
   constructor(private route: ActivatedRoute,
     private foodService: FoodService,
     private appetiteService: AppetiteService,
-    private choiceService: DecisionTreeService,
+    private injector: Injector,
     private router: Router
-  ) { }
+  ) {
+    const serviceToken = route.snapshot.data['requiredService'];
+    this.choiceService = injector.get(serviceToken);
+  }
 
   ngOnInit() {
     this.showChoice();
