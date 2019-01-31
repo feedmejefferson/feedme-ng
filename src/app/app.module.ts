@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 //import { AngularFireModule } from '@angular/fire';
 //import { AngularFireDatabaseModule } from '@angular/fire/database';
 //import { AngularFireAuthModule } from '@angular/fire/auth';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,9 +31,10 @@ import { FoodComponent } from './food/food.component';
     //    AngularFireModule.initializeApp(environment.firebase),
     //AngularFireDatabaseModule,
     //AngularFireAuthModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    NgbDropdownModule
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -26,3 +26,43 @@
   margin-top: 1.5rem;
   z-index: 2;
 }
+
+.navbar button {
+  border: 0;
+  background: inherit;
+}
+
+/* override bootstrap and ng bootstrap default dropdown styles */
+/* TODO: there has to be a better way -- find it (possibly drop bootstrap) */
+.dropdown-item {
+    color: inherit;
+    text-decoration: inherit;
+    background-color: inherit;
+    padding: .5rem;
+}
+.dropdown-menu .show {
+  border: 0;
+  padding: 0;
+  background: inherit;
+  color: inherit;
+}
+.navbar .dropdown-menu {
+  border: 0;
+  background: inherit;
+  background-color: #f8f9fad0; 
+}
+
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .dropdown-item {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.navbar-light .navbar-nav .dropdown-item:hover, .navbar-light .navbar-nav .dropdown-item:focus {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar-light .navbar-nav .dropdown-item.active {
+  color: rgba(0, 0, 0, 0.9);
+}
+

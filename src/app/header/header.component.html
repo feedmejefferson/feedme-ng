@@ -11,9 +11,21 @@
     </button>
     <div class="navbar-collapse" [ngbCollapse]="isCollapsed">
       <ul class="navbar-nav ml-auto">
-        <li *ngFor="let link of links" class="nav-item ml-auto" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >
-          <a class="nav-link" routerLink="{{link.path}}">{{link.display}}</a>
-        </li>
+        <ng-container *ngFor="let link of links">
+          <li *ngIf="!link.children else menuItemWithSubmenu" class="nav-item ml-auto" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >
+            <a class="nav-link" [routerLink]="link.path">{{link.display}}</a>
+          </li>
+
+<ng-template #menuItemWithSubmenu>
+  <li id="link.id" class="ml-auto" ngbDropdown>
+    <button class="nav-link nav-item ml-auto" ngbDropdownToggle>{{link.display}}</button>
+    <div ngbDropdownMenu [attr.aria-labelledby]="link.id">
+      <a class="dropdown-item ml-auto" routerLink="{{sublink.path}}" routerLinkActive="active" *ngFor="let sublink of link.children">{{sublink.display}}</a>
+    </div>
+  </li>
+</ng-template>
+
+        </ng-container>
       </ul>
     </div>
   </nav>
