@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 //import { AngularFireModule } from '@angular/fire';
 //import { AngularFireDatabaseModule } from '@angular/fire/database';
 //import { AngularFireAuthModule } from '@angular/fire/auth';
-import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,7 @@ import { ChoiceComponent } from './choice/choice.component';
 import { ChoiceRedirect } from './choice/choice.redirect';
 import { AboutComponent } from './about/about.component';
 import { FoodComponent } from './food/food.component';
+import { ConsentComponent } from './consent/consent.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FoodComponent } from './food/food.component';
     ChoiceComponent,
     ChoiceRedirect,
     AboutComponent,
-    FoodComponent
+    FoodComponent,
+    ConsentComponent
   ],
   imports: [
     BrowserModule,
@@ -32,8 +34,10 @@ import { FoodComponent } from './food/food.component';
     //AngularFireDatabaseModule,
     //AngularFireAuthModule,
     NgbCollapseModule,
+    NgbModalModule,
     NgbDropdownModule
   ],
+  entryComponents: [ ConsentComponent ],
   providers: [ ],
   bootstrap: [AppComponent]
 })
