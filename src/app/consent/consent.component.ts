@@ -8,7 +8,7 @@ import {NgbActiveModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ConsentComponent implements OnInit {
 
-  constructor(private modal: NgbActiveModal) {}
+  constructor(public modal: NgbActiveModal) {}
   ngOnInit() {}
 
 }
