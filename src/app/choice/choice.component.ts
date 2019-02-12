@@ -65,7 +65,6 @@ export class ChoiceComponent implements OnInit {
   }
 
   choose(id: string, position: number): void {
-    this.appetiteService.postChosen(id);
     let step: number = +this.route.snapshot.paramMap.get('step');
     this.appetiteService.postChosen({
       step: step,
