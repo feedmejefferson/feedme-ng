@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.1",
-    "@ngx-pwa/local-storage": "^7.4.1",
     "bootstrap": "^4.2.1",
     "core-js": "^2.5.4",
     "firebase": "^5.8.0",

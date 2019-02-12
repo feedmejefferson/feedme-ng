@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ConsentComponent } from './consent.component';
-import { LocalStorage } from '@ngx-pwa/local-storage';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,7 @@ import { LocalStorage } from '@ngx-pwa/local-storage';
 export class ConsentService {
 
   private consent: Promise<boolean>;
-  constructor(private modalService: NgbModal, private localStorage: LocalStorage) {
+  constructor(private modalService: NgbModal) {
   }
 
   getConsent(): Promise<boolean> {
@@ -18,17 +17,16 @@ export class ConsentService {
     } else {
       let consentSvc=this;
       return new Promise<boolean>(function(resolve, reject) {
-        consentSvc.localStorage.getItem<boolean>('anonymousCollection').subscribe((consent) => {
-          if(consent===true) {
+        let consent = localStorage.getItem('anonymousCollection');
+          if(consent==='true') {
             consentSvc.consent=new Promise<boolean>(function(resolve, reject) {resolve(true);});
             resolve(true);
-          } else if(consent===false) {
+          } else if(consent==='false') {
             consentSvc.consent=new Promise<boolean>(function(resolve, reject) {resolve(false);});
             resolve(false);
           } else {
             consentSvc.askForConsent().then(consent => {resolve(consent)});
           }
-        });
       });
     }
   }
@@ -38,10 +36,10 @@ export class ConsentService {
       consentSvc.modalService.open(ConsentComponent, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
         // if we get a firm answer, save the preference and stop bothering the user
         if(result=="yes") { 
-          consentSvc.localStorage.setItem('anonymousCollection', true).subscribe(() => {});
+          localStorage.setItem('anonymousCollection', 'true');
           consentSvc.consent=new Promise<boolean>(function(resolve, reject) {resolve(true);});
         } else if(result=="no") {
-          consentSvc.localStorage.setItem('anonymousCollection', false).subscribe(() => {});
+          localStorage.setItem('anonymousCollection', 'false');
           consentSvc.consent=new Promise<boolean>(function(resolve, reject) {resolve(false);});
         }
          
