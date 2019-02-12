@@ -9,25 +9,23 @@ export class ConsentService {
 
   private consent: Promise<boolean>;
   constructor(private modalService: NgbModal) {
+    let consent = localStorage.getItem('anonymousCollection');
+    if(consent==='true') {
+      this.consent=new Promise<boolean>(function(resolve, reject) {resolve(true);});
+    } else if(consent==='false') {
+      this.consent=new Promise<boolean>(function(resolve, reject) {resolve(false);});
+    }
+  }
+  
+  isKnown(): boolean {
+    return !!this.consent; 
   }
 
   getConsent(): Promise<boolean> {
     if(this.consent) {
       return this.consent;
     } else {
-      let consentSvc=this;
-      return new Promise<boolean>(function(resolve, reject) {
-        let consent = localStorage.getItem('anonymousCollection');
-          if(consent==='true') {
-            consentSvc.consent=new Promise<boolean>(function(resolve, reject) {resolve(true);});
-            resolve(true);
-          } else if(consent==='false') {
-            consentSvc.consent=new Promise<boolean>(function(resolve, reject) {resolve(false);});
-            resolve(false);
-          } else {
-            consentSvc.askForConsent().then(consent => {resolve(consent)});
-          }
-      });
+      return this.askForConsent();
     }
   }
   askForConsent(): Promise<boolean> {
