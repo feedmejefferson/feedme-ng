@@ -8,9 +8,12 @@ import { ConsentComponent } from './consent.component';
 export class ConsentService {
 
   private consent: Promise<boolean>;
+  private knownAsTrue: boolean = false;
+
   constructor(private modalService: NgbModal) {
     let consent = localStorage.getItem('anonymousCollection');
     if(consent==='true') {
+      this.knownAsTrue=true;
       this.consent=new Promise<boolean>(function(resolve, reject) {resolve(true);});
     } else if(consent==='false') {
       this.consent=new Promise<boolean>(function(resolve, reject) {resolve(false);});
@@ -19,6 +22,10 @@ export class ConsentService {
   
   isKnown(): boolean {
     return !!this.consent; 
+  }
+
+  isKnownToBeTrue(): boolean {
+    return this.knownAsTrue;
   }
 
   getConsent(): Promise<boolean> {
@@ -31,7 +38,7 @@ export class ConsentService {
   askForConsent(): Promise<boolean> {
     let consentSvc=this;
     return new Promise<boolean>(function(resolve, reject) {
-      consentSvc.modalService.open(ConsentComponent, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      consentSvc.modalService.open(ConsentComponent, {ariaLabelledBy: 'modal-basic-title', backdrop: false }).result.then((result) => {
         // if we get a firm answer, save the preference and stop bothering the user
         if(result=="yes") { 
           localStorage.setItem('anonymousCollection', 'true');
