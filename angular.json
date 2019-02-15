@@ -55,6 +55,30 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -66,6 +90,9 @@
           "configurations": {
             "production": {
               "browserTarget": "feedme:build:production"
+            },
+            "staging": {
+              "browserTarget": "feedme:build:staging"
             }
           }
         },
@@ -120,6 +147,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "feedme:serve:production"
+            },
+            "staging": {
+              "devServerTarget": "feedme:serve:staging"
             }
           }
         },
