@@ -101,7 +101,7 @@ export class AppetiteService {
         }
         this.http.post(baseUrl, appetite).toPromise().then(x=>{
           console.log(x);
-          console.log("updating the pointer");
+          //console.log("updating the pointer");
           this.storage.setItem(lastSentChoiceIndexKey,`${this.latestIndex}`);
           this.lastSentIndex=this.latestIndex;
         }).catch(e=>{});;

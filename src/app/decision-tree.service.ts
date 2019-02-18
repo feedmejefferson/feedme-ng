@@ -5,7 +5,7 @@ import { FoodNode } from './food-node';
 import { Observable } from 'rxjs';
 import { Leaf, Branch, MappedLeaf, TreeScaler } from './decision-tree';
 
-const baseUrl: string = environment.baseFoodImageUrl;
+const baseUrl: string = environment.baseFoodUrl;
 
 export function getRandomIndex(setSize: number): number {
   return Math.floor(Math.random() * setSize);
@@ -19,7 +19,7 @@ export class DecisionTreeService {
   treeMap$: Promise<Branch>;
 
   constructor(private http: HttpClient) { 
-    this.treeMap$ = this.http.get<Branch>(baseUrl + 'tree.json').toPromise();
+    this.treeMap$ = this.http.get<Branch>(baseUrl + 'meta/tree.json').toPromise();
   }
 
   /**

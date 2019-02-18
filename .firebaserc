@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "feedme-stage",
+    "staging": "feedme-stage",
+    "production": "feedme-jefferson"
+  }
+}

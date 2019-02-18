@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Food } from './food';
 import { environment } from '../environments/environment';
 
-const baseUrl: string = environment.baseFoodImageUrl;
+const baseUrl: string = environment.baseFoodUrl;
+const baseImageUrl: string = baseUrl + 'images/';
 const baseAttributionUrl: string = baseUrl + 'attributions/';
 const attributionHeaders = { responseType: 'text' };
 
@@ -16,7 +17,7 @@ export class FoodService {
   menu$: Promise<Array<string>>;
   
   constructor(private http: HttpClient) { 
-    this.menu$ = this.http.get<Array<string>>(baseUrl + 'menu.json').toPromise();
+    this.menu$ = this.http.get<Array<string>>(baseUrl + 'meta/menu.json').toPromise();
   }
   
   getMenu(): Promise<Array<string>> {
@@ -27,7 +28,7 @@ export class FoodService {
     let outer=this;
     return {
       id: id, 
-      imageUrl: `${baseUrl}${id}`,
+      imageUrl: `${baseImageUrl}${id}`,
       attribution$: this.http.get(
         baseAttributionUrl + id + ".txt", 
         {responseType: 'text'}
