@@ -43,23 +43,18 @@ export class DecisionTreeService {
         if(!node.children) {
           resolve([ 'food' , (<Leaf><unknown>node).value ]); 
         } else {
-          [0,1].map(index => {
-            let name: string;
-            if(node.children[index]){
-              //this branch has four child options, randomly grab one of the middle ones
-              let child: Branch = <Branch><unknown>node.children[index]
-              if(getRandomIndex(2)) {
-                name=TreeScaler.bisectRight(child).value;
-              } else {
-                name=TreeScaler.bisectLeft(child).value;
-              }
-            } else {
-              //this is a terminal branch, revert to the nonrandom logic described above
-              name=(<Leaf><unknown>node).value;
-            }
-            choiceRoute.push(name);
-          });
-        
+          let randomAddress = 
+            TreeScaler.integerToAddress(getRandomIndex(Number.MAX_SAFE_INTEGER));
+          let name: string;
+
+          // choose items from each branch that are similar in all other 
+          // dimensions but the one that we're trying to separate on
+          name=TreeScaler.findLeafForPattern(node,[0],randomAddress).value;
+          choiceRoute.push(name);
+          
+          name=TreeScaler.findLeafForPattern(node,[1],randomAddress).value;
+          choiceRoute.push(name);
+          
           resolve(choiceRoute)
         }  
       });
