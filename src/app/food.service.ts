@@ -15,22 +15,22 @@ const attributionHeaders = { responseType: 'text' };
 export class FoodService {
 
   menu$: Promise<Array<string>>;
-  
-  constructor(private http: HttpClient) { 
+
+  constructor(private http: HttpClient) {
     this.menu$ = this.http.get<Array<string>>(baseUrl + 'meta/menu.json').toPromise();
   }
-  
+
   getMenu(): Promise<Array<string>> {
     return this.menu$;
   }
-  
+
   getFood(id: string): Food {
-    let outer=this;
+    const outer = this;
     return {
-      id: id, 
+      id: id,
       imageUrl: `${baseImageUrl}${id}`,
       attribution$: this.http.get(
-        baseAttributionUrl + id + ".txt", 
+        baseAttributionUrl + id + '.txt',
         {responseType: 'text'}
       ),
     };

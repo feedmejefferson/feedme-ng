@@ -5,8 +5,8 @@ import { AppetiteService } from './appetite.service';
 
 describe('AppetiteService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [ HttpClientTestingModule ]  
-  }));  
+    imports: [ HttpClientTestingModule ]
+  }));
 
   it('should be created', () => {
     const service: AppetiteService = TestBed.get(AppetiteService);

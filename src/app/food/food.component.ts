@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'; 
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Food } from '../food';
 import { FoodService } from '../food.service';
 
@@ -12,7 +12,7 @@ export class FoodComponent implements OnInit {
 
   food: Food;
   constructor(private route: ActivatedRoute,
-    private foodService: FoodService 
+    private foodService: FoodService
   ) { }
 
   ngOnInit() {

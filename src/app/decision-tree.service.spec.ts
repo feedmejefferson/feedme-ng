@@ -5,7 +5,7 @@ import { DecisionTreeService } from './decision-tree.service';
 
 describe('DecisionTreeService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [ HttpClientTestingModule ]  
+    imports: [ HttpClientTestingModule ]
   }));
 
   it('should be created', () => {

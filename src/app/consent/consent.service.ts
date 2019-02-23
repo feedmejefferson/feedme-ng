@@ -8,20 +8,20 @@ import { ConsentComponent } from './consent.component';
 export class ConsentService {
 
   private consent: Promise<boolean>;
-  private knownAsTrue: boolean = false;
+  private knownAsTrue = false;
 
   constructor(private modalService: NgbModal) {
-    let consent = localStorage.getItem('anonymousCollection');
-    if(consent==='true') {
-      this.knownAsTrue=true;
-      this.consent=new Promise<boolean>(function(resolve, reject) {resolve(true);});
-    } else if(consent==='false') {
-      this.consent=new Promise<boolean>(function(resolve, reject) {resolve(false);});
+    const consent = localStorage.getItem('anonymousCollection');
+    if (consent === 'true') {
+      this.knownAsTrue = true;
+      this.consent = new Promise<boolean>(function(resolve, reject) { resolve(true); });
+    } else if (consent === 'false') {
+      this.consent = new Promise<boolean>(function(resolve, reject) { resolve(false); });
     }
   }
-  
+
   isKnown(): boolean {
-    return !!this.consent; 
+    return !!this.consent;
   }
 
   isKnownToBeTrue(): boolean {
@@ -29,26 +29,26 @@ export class ConsentService {
   }
 
   getConsent(): Promise<boolean> {
-    if(this.consent) {
+    if (this.consent) {
       return this.consent;
     } else {
       return this.askForConsent();
     }
   }
   askForConsent(): Promise<boolean> {
-    let consentSvc=this;
+    const consentSvc = this;
     return new Promise<boolean>(function(resolve, reject) {
       consentSvc.modalService.open(ConsentComponent, {ariaLabelledBy: 'modal-basic-title', backdrop: false }).result.then((result) => {
         // if we get a firm answer, save the preference and stop bothering the user
-        if(result=="yes") { 
+        if (result === 'yes') {
           localStorage.setItem('anonymousCollection', 'true');
-          consentSvc.consent=new Promise<boolean>(function(resolve, reject) {resolve(true);});
-        } else if(result=="no") {
+          consentSvc.consent = new Promise<boolean>(function(rslv, rjct) { rslv(true); });
+        } else if (result === 'no') {
           localStorage.setItem('anonymousCollection', 'false');
-          consentSvc.consent=new Promise<boolean>(function(resolve, reject) {resolve(false);});
+          consentSvc.consent = new Promise<boolean>(function(rslv, rjct) { rslv(false); });
         }
-         
-        resolve(result=="yes");
+
+        resolve(result === 'yes');
       }, (reason) => {
         resolve(false);
       });

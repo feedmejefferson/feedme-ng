@@ -5,7 +5,7 @@ import { FoodService } from './food.service';
 
 describe('FoodService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [ HttpClientTestingModule ]  
+    imports: [ HttpClientTestingModule ]
   }));
 
   it('should be created', () => {
