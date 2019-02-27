@@ -4,6 +4,7 @@ import { AboutComponent } from './about/about.component';
 import { ChoiceComponent } from './choice/choice.component';
 import { ChoiceRedirectComponent } from './choice/choice.redirect';
 import { FoodComponent } from './food/food.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ChoiceService } from './choice.service';
 import { RandomChoiceService } from './random-choice.service';
 import { DecisionTreeService } from './decision-tree.service';
@@ -19,6 +20,8 @@ const routes: Routes = [
   { path: 'cb/:step/:id1/:id2', component: ChoiceComponent, data: {requiredService: DECISION_TREE_TOKEN}},
   { path: 'food/:id1', component: FoodComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'user', component: UserProfileComponent },
+  { path: 'login', component: UserProfileComponent },
   // { path: '', redirectTo: '/choice', pathMatch: 'full' }
 ];
 
