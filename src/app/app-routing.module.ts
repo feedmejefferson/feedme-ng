@@ -8,6 +8,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ChoiceService } from './choice.service';
 import { RandomChoiceService } from './random-choice.service';
 import { DecisionTreeService } from './decision-tree.service';
+import { PhotoListComponent } from './components/photo-list/photo-list.component';
+import { PhotoComponent } from './components/photo/photo.component';
 
 export const RANDOM_CHOICE_TOKEN = new InjectionToken<ChoiceService>('RandomChoiceService');
 export const DECISION_TREE_TOKEN = new InjectionToken<ChoiceService>('DecisionTreeService');
@@ -22,6 +24,9 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'user', component: UserProfileComponent },
   { path: 'login', component: UserProfileComponent },
+  { path: 'photo', component: PhotoListComponent },
+  { path: 'photo/new', component: PhotoComponent },
+  { path: 'photo/:id', component: PhotoComponent },
   // { path: '', redirectTo: '/choice', pathMatch: 'full' }
 ];
 

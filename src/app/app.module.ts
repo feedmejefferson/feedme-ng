@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgbCollapseModule, NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +17,8 @@ import { AboutComponent } from './about/about.component';
 import { FoodComponent } from './food/food.component';
 import { ConsentComponent } from './consent/consent.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { PhotoListComponent } from './components/photo-list/photo-list.component';
+import { PhotoComponent } from './components/photo/photo.component';
 
 @NgModule({
   declarations: [
@@ -26,10 +29,13 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     AboutComponent,
     FoodComponent,
     ConsentComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    PhotoListComponent,
+    PhotoComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -40,7 +46,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     NgbDropdownModule
   ],
   entryComponents: [ ConsentComponent ],
-  providers: [ ],
+  providers: [ { provide: FirestoreSettingsToken, useValue: {} } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

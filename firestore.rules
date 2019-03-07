@@ -4,10 +4,18 @@ service cloud.firestore {
     match /users/{userId} {
         allow read, write: if isOwner(userId);
     }
+    match /photos/{photoId} {
+        allow read;
+        allow write: if isModerator();
+    }
 
     // Reusable function to determine document ownership
     function isOwner(userId) {
-        return request.auth.uid == userId
+        return request.auth !=null && request.auth.uid == userId
+    }
+    function isModerator() {
+        return request.auth !=null && exists(/databases/$(database)/documents/moderators/$(request.auth.uid));
+
     }
   }
 }

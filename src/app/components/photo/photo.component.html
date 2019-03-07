@@ -1,0 +1,82 @@
+<main role="main" class="flex-shrink-0">
+    <div class="container">
+        <form *ngIf="photo$ | async as photo">
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <input type="text" class="form-control" id="title" [(ngModel)]="photo.title" name="title" />
+            </div>
+           
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <input type="text" class="form-control" id="description" [(ngModel)]="photo.description" name="description" />
+            </div>
+
+            <div class="form-group">
+                <label>This is a picture of the food(s) known as:</label>
+                <ul>
+                  <li *ngFor="let tag of photo.isTags">{{tag}}</li>
+                </ul>
+                <input (keydown.enter)="photo.isTags.push(isTag);isTag=''" type="text" class="form-control" [(ngModel)]="isTag" id="isTag" name="isTag" />
+                <button (click)="photo.isTags.push(isTag);isTag=''" class="btn btn-success">Add Tag</button>
+            </div>      
+
+            <div class="form-group">
+                <label>The food(s) in this picture is made up of/also contains the following foods:</label>
+                <ul>
+                  <li *ngFor="let tag of photo.containsTags">{{tag}}</li>
+                </ul>
+                <input (keydown.enter)="photo.containsTags.push(containsTag);containsTag=''" type="text" class="form-control" [(ngModel)]="containsTag" id="containsTag" name="containsTag" />
+                <button (click)="photo.containsTags.push(containsTag);containsTag=''" class="btn btn-success">Add Tag</button>
+            </div>      
+
+            <div class="form-group">
+                <label>This food could be described as:</label>
+                <ul>
+                  <li *ngFor="let tag of photo.describedAsTags">{{tag}}</li>
+                </ul>
+                <input (keydown.enter)="photo.describedAsTags.push(describedAsTag);describedAsTag=''" type="text" class="form-control" [(ngModel)]="describedAsTag" id="describedAsTag" name="describedAsTag" />
+                <button (click)="photo.describedAsTags.push(describedAsTag);describedAsTag=''" class="btn btn-success">Add Tag</button>
+            </div>      
+
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" class="form-control" id="author" [(ngModel)]="photo.author" name="author" />
+            </div>      
+
+            <div class="form-group">
+                <label for="authorProfileUrl">Author Profile Page:</label>
+                <input type="text" class="form-control" id="authorProfileUrl" [(ngModel)]="photo.authorProfileUrl" name="authorProfileUrl" />
+            </div>      
+
+            <div class="form-group">
+                <label for="originTitle">Originating Source Title:</label>
+                <input type="text" class="form-control" id="originTitle" [(ngModel)]="photo.originTitle" name="originTitle" />
+            </div>      
+
+            <div class="form-group">
+                <label for="originUrl">Originating Source Page:</label>
+                <input type="text" class="form-control" id="originUrl" [(ngModel)]="photo.originUrl" name="originUrl" />
+            </div>
+
+            <div class="form-group">
+                <label for="license">License:</label>
+                <input type="text" class="form-control" id="license" [(ngModel)]="photo.license" name="license" />
+            </div>      
+
+            <div class="form-group">
+                <label for="licenseUrl">License Url:</label>
+                <input type="text" class="form-control" id="licenseUrl" [(ngModel)]="photo.licenseUrl" name="licenseUrl" />
+            </div>      
+            <!--
+            <div class="form-group">
+                <label for="xxx">Xxx</label>
+                <input type="text" class="form-control" id="xxx" [(ngModel)]="photo.xxx" name="xxx" />
+            </div>      
+
+-->
+         
+            <button (click)="updatePhoto(photo)" type="submit" class="btn btn-success">Submit</button>
+           
+          </form>
+          </div>
+  </main> 

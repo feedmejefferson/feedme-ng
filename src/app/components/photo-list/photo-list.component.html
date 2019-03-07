@@ -1,0 +1,37 @@
+<main role="main" class="flex-shrink-0">
+  <div class="container">
+    <table>
+      <thead>
+        <th>Photo id</th>
+        <th>Title</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let photo of photos">
+    
+          <td>{{photo.id}}</td>
+          <td><a [routerLink]="['/photo',photo.id]">{{photo.title}}</a></td>
+          <td>{{photo.description}}</td>
+          <td>
+              <button (click)="delete(photo.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>New Photo</h2>
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" [(ngModel)]="photo.title" name="title">
+      </div>
+     
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" [(ngModel)]="photo.description" name="description">
+      </div>
+     
+      <button (click)="create(photo)" type="submit" class="btn btn-success">Submit</button>
+     
+    </form>
+  </div>
+</main> 
