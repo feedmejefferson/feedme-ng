@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbActiveModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-consent',

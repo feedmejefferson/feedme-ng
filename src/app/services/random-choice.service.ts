@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Food } from './food';
+import { Food } from '../models/food.model';
 import { FoodService } from './food.service';
 import { ChoiceService } from './choice.service';
 

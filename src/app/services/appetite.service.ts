@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { Subject, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { ConsentService } from './consent/consent.service';
+import { ConsentService } from './consent.service';
 
 const baseUrl: string = environment.appetiteUrl;
 const bufferSize = 100;

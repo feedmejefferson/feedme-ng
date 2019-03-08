@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Food } from './food';
-import { environment } from '../environments/environment';
+import { Food } from '../models/food.model';
+import { environment } from '../../environments/environment';
 
 const baseUrl: string = environment.baseFoodUrl;
 const baseImageUrl: string = baseUrl + 'images/';

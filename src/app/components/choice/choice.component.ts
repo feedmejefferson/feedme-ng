@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, Injector } from '@angular/core';
-import { Food } from '../food';
-import { FoodService } from '../food.service';
-import { AppetiteService } from '../appetite.service';
-import { ChoiceService } from '../choice.service';
+import { Food } from '../../models/food.model';
+import { FoodService } from '../../services/food.service';
+import { AppetiteService } from '../../services/appetite.service';
+import { ChoiceService } from '../../services/choice.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 

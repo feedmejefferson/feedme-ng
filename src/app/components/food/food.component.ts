@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { Food } from '../food';
-import { FoodService } from '../food.service';
+import { Food } from '../../models/food.model';
+import { FoodService } from '../../services/food.service';
 
 @Component({
   selector: 'app-food',

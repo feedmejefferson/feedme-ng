@@ -1,15 +1,17 @@
 import { NgModule, InjectionToken } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AboutComponent } from './about/about.component';
-import { ChoiceComponent } from './choice/choice.component';
-import { ChoiceRedirectComponent } from './choice/choice.redirect';
-import { FoodComponent } from './food/food.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { ChoiceService } from './choice.service';
-import { RandomChoiceService } from './random-choice.service';
-import { DecisionTreeService } from './decision-tree.service';
-import { PhotoListComponent } from './components/photo-list/photo-list.component';
+
+import { AboutComponent } from './components/about/about.component';
+import { ChoiceComponent } from './components/choice/choice.component';
+import { ChoiceRedirectComponent } from './components/choice/choice.redirect';
+import { FoodComponent } from './components/food/food.component';
 import { PhotoComponent } from './components/photo/photo.component';
+import { PhotoListComponent } from './components/photo-list/photo-list.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
+import { ChoiceService } from './services/choice.service';
+import { RandomChoiceService } from './services/random-choice.service';
+import { DecisionTreeService } from './services/decision-tree.service';
 
 export const RANDOM_CHOICE_TOKEN = new InjectionToken<ChoiceService>('RandomChoiceService');
 export const DECISION_TREE_TOKEN = new InjectionToken<ChoiceService>('DecisionTreeService');

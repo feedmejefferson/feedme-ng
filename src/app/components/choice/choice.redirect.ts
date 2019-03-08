@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { ChoiceService } from '../choice.service';
+import { ChoiceService } from '../../services/choice.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ConsentService } from '../consent/consent.service';
+import { ConsentService } from '../../services/consent.service';
 
 @Component({
   selector: 'app-about',

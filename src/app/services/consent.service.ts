@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { ConsentComponent } from './consent.component';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ConsentComponent } from '../components/consent/consent.component';
 
 @Injectable({
   providedIn: 'root'

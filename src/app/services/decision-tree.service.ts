@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
-import { FoodNode } from './food-node';
+import { environment } from '../../environments/environment';
+import { FoodNode } from '../models/food-node.model';
 import { Observable } from 'rxjs';
 import { Leaf, Branch, MappedLeaf, TreeScaler } from './decision-tree';
 
