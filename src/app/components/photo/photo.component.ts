@@ -12,11 +12,14 @@ import { tap, map } from 'rxjs/operators';
 })
 export class PhotoComponent implements OnInit {
 
-  photo$;
+  photo$: Observable<Photo>;
+  imageUrl$;
+
   constructor(private route: ActivatedRoute, private photoService: PhotoService, private router: Router) { }
 
   ngOnInit() {
     this.getPhoto();
+    this.getPhotoImageUrl();
   }
 
   getPhoto(): void {
@@ -38,4 +41,9 @@ export class PhotoComponent implements OnInit {
     }
   }
 
+  getPhotoImageUrl(): void {
+    this.imageUrl$ = this.photo$.pipe(
+      map(photo => this.photoService.getImageUrl(photo.id))
+      );
+  }
 }

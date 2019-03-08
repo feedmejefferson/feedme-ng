@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { NgbCollapseModule, NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { TagInputModule } from 'ngx-chips';
 
 import { environment } from './../environments/environment';
 
@@ -22,6 +24,7 @@ import { HeaderComponent } from './header/header.component';
 import { PhotoComponent } from './components/photo/photo.component';
 import { PhotoListComponent } from './components/photo-list/photo-list.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +42,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -46,7 +50,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     AngularFireAuthModule,
     NgbCollapseModule,
     NgbModalModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    TagInputModule,
+    BrowserAnimationsModule
   ],
   entryComponents: [ ConsentComponent ],
   providers: [ { provide: FirestoreSettingsToken, useValue: {} } ],

@@ -4,6 +4,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
+
+const baseUrl: string = environment.baseFoodUrl;
+const baseImageUrl: string = baseUrl + 'images/';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,4 +38,9 @@ export class PhotoService {
       map(doc => doc.data() as Photo)
     );
   }
+
+  getImageUrl(photoId: string): string {
+    return baseImageUrl + photoId;
+  }
 }
+
