@@ -24,7 +24,10 @@ import { HeaderComponent } from './header/header.component';
 import { PhotoComponent } from './components/photo/photo.component';
 import { PhotoListComponent } from './components/photo-list/photo-list.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-
+import { PHOTO_HTTP_SERVICE, PHOTO_READONLY_SERVICE, PHOTO_FIRESTORE_SERVICE } from './services/photo.service';
+import { PhotoHttpService } from './services/photo.http.service';
+import { PhotoFirestoreService } from './services/photo.firestore.service';
+import { PhotoReadOnlyService } from './services/photo.readonly.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,12 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     BrowserAnimationsModule
   ],
   entryComponents: [ ConsentComponent ],
-  providers: [ { provide: FirestoreSettingsToken, useValue: {} } ],
+  providers: [ 
+    { provide: FirestoreSettingsToken, useValue: {} },
+    { provide: PHOTO_HTTP_SERVICE, useClass: PhotoHttpService },
+    { provide: PHOTO_FIRESTORE_SERVICE, useClass: PhotoFirestoreService },
+    { provide: PHOTO_READONLY_SERVICE, useClass: PhotoReadOnlyService },
+ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

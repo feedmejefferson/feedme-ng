@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhotoService } from '../../services/photo.service';
 import { Photo } from '../../models/photo.model';
+import { environment } from  '../../../environments/environment';
 
 @Component({
   selector: 'app-photo-list',
@@ -11,27 +12,15 @@ import { Photo } from '../../models/photo.model';
 export class PhotoListComponent implements OnInit {
 
   photos: Photo[];
-  photo: Photo = {id: '', title: '', description: ''} as Photo;
 
   constructor(
-    private photoService: PhotoService,         
+    @Inject(environment.photoServiceToken) private photoService: PhotoService,         
     private router: Router
     ) { }
 
   ngOnInit() {
-    this.photoService.getPhotos().subscribe(data => {
-      this.photos = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          ...e.payload.doc.data()
-        } as Photo;
-      })
-    });
+    this.photoService.getPhotos()
+    .subscribe(data => this.photos = data);
   }
-
-  create(photo: Photo){
-    this.photoService.createPhoto(photo);
-  }
-
 
 }

@@ -3,67 +3,43 @@
         <img *ngIf="imageUrl$ | async as imageUrl" src="{{imageUrl}}" />
         <form *ngIf="photo$ | async as photo">
             <div class="form-group">
+                <button (click)="updatePhoto(photo)" type="submit" class="btn btn-success">Submit</button>
+
               <label for="title">Title:</label>
               <input type="text" class="form-control" id="title" [(ngModel)]="photo.title" name="title" />
-            </div>
            
-            <div class="form-group">
               <label for="description">Description:</label>
               <input type="text" class="form-control" id="description" [(ngModel)]="photo.description" name="description" />
-            </div>
 
  
-            <div class="form-group">
                 <label>Main Food Tags:</label>
-                <tag-input [(ngModel)]="photo.isTags" name="isTags" dragZone="a"></tag-input>
-            </div>
+                <tag-input [(ngModel)]="photo.isTags" name="isTags" modelAsStrings="true" dragZone="a"></tag-input>
 
-            <div class="form-group">
                 <label>Contains Food Tags:</label>
-                <tag-input [(ngModel)]="photo.containsTags" name="containsTags" dragZone="a"></tag-input>
-            </div>
+                <tag-input [(ngModel)]="photo.containsTags" name="containsTags" modelAsStrings="true" dragZone="a"></tag-input>
 
-            <div class="form-group">
                 <label>Additional Descriptive Tags:</label>
-                <tag-input [(ngModel)]="photo.descriptiveTags" name="descriptiveTags" dragZone="a"></tag-input>
-            </div>
+                <tag-input [(ngModel)]="photo.descriptiveTags" name="descriptiveTags" modelAsStrings="true" dragZone="a"></tag-input>
     
-        
-                <div class="form-group">
-                <label>This food could be described as:</label>
-            </div>      
-
-            <div class="form-group">
                 <label for="author">Author:</label>
-                <input type="text" class="form-control" id="author" [(ngModel)]="photo.author" name="author" />
-            </div>      
+                <input [disabled]="true" type="text" class="form-control" id="author" [(ngModel)]="photo.author" name="author" />
 
-            <div class="form-group">
                 <label for="authorProfileUrl">Author Profile Page:</label>
-                <input type="text" class="form-control" id="authorProfileUrl" [(ngModel)]="photo.authorProfileUrl" name="authorProfileUrl" />
-            </div>      
+                <input [disabled]="true" type="text" class="form-control" id="authorProfileUrl" [(ngModel)]="photo.authorProfileUrl" name="authorProfileUrl" />
 
-            <div class="form-group">
                 <label for="originTitle">Originating Source Title:</label>
-                <input type="text" class="form-control" id="originTitle" [(ngModel)]="photo.originTitle" name="originTitle" />
-            </div>      
+                <input [disabled]="true" type="text" class="form-control" id="originTitle" [(ngModel)]="photo.originTitle" name="originTitle" />
 
-            <div class="form-group">
                 <label for="originUrl">Originating Source Page:</label>
-                <input type="text" class="form-control" id="originUrl" [(ngModel)]="photo.originUrl" name="originUrl" />
-            </div>
+                <input [disabled]="true" type="text" class="form-control" id="originUrl" [(ngModel)]="photo.originUrl" name="originUrl" />
 
-            <div class="form-group">
                 <label for="license">License:</label>
-                <input type="text" class="form-control" id="license" [(ngModel)]="photo.license" name="license" />
-            </div>      
+                <input [disabled]="true" type="text" class="form-control" id="license" [(ngModel)]="photo.license" name="license" />
 
-            <div class="form-group">
                 <label for="licenseUrl">License Url:</label>
-                <input type="text" class="form-control" id="licenseUrl" [(ngModel)]="photo.licenseUrl" name="licenseUrl" />
+                <input [disabled]="true" type="text" class="form-control" id="licenseUrl" [(ngModel)]="photo.licenseUrl" name="licenseUrl" />
             </div>      
          
-            <button (click)="updatePhoto(photo)" type="submit" class="btn btn-success">Submit</button>
            
           </form>
           </div>

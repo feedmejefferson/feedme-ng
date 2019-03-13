@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Photo } from '../../models/photo.model';
 import { PhotoService } from '../../services/photo.service';
 import { Observable, of } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-photo',
@@ -15,7 +16,11 @@ export class PhotoComponent implements OnInit {
   photo$: Observable<Photo>;
   imageUrl$;
 
-  constructor(private route: ActivatedRoute, private photoService: PhotoService, private router: Router) { }
+  constructor(
+    private route: ActivatedRoute, 
+    @Inject(environment.photoServiceToken) private photoService: PhotoService,         
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.getPhoto();
@@ -27,7 +32,6 @@ export class PhotoComponent implements OnInit {
     if(id){
       this.photo$ = this.photoService.getPhoto(id);
     } else {
- //     this.photo$ = of<Photo>(<Photo>{});
       this.photo$ = of<Photo>(<Photo><unknown>{isTags: [], containsTags: [], describedAsTags: []});
     }
   }
@@ -36,9 +40,9 @@ export class PhotoComponent implements OnInit {
     if(photo.id) {
       this.photoService.updatePhoto(photo);
     } else {
-      this.photoService.createPhoto(photo)
-      .then(ref => this.router.navigate(['/photo',ref.id]));
+      this.photoService.createPhoto(photo);
     }
+    this.router.navigate(['/photo']);
   }
 
   getPhotoImageUrl(): void {

@@ -1,46 +1,19 @@
-import { Injectable } from '@angular/core';
 import { Photo } from '../models/photo.model';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { InjectionToken } from '@angular/core';
 
-import { environment } from '../../environments/environment';
+export const PHOTO_SERVICE =  'PHOTO_SERVICE';
+export const PHOTO_HTTP_SERVICE = new InjectionToken<string>('PHOTO_HTTP_SERVICE');
+export const PHOTO_READONLY_SERVICE = new InjectionToken<string>('PHOTO_READONLY_SERVICE');
+export const PHOTO_FIRESTORE_SERVICE = new InjectionToken<string>('PHOTO_FIRESTORE_SERVICE');
 
-const baseUrl: string = environment.baseFoodUrl;
-const baseImageUrl: string = baseUrl + 'images/';
-
-
-@Injectable({
-  providedIn: 'root'
-})
-export class PhotoService {
-
-  constructor(private firestore: AngularFirestore) { }
-
-  getPhotos() {
-    return this.firestore.collection<Photo>('photos').snapshotChanges();
-  }
-  createPhoto(photo: Photo){
-    return this.firestore.collection<Photo>('photos').add(photo)
-    .then(ref => {
-      ref.update({id: ref.id});
-      return ref;
-    });
-  }
-  updatePhoto(photo: Photo){
-    this.firestore.doc<Photo>('photos/' + photo.id).update(photo);
-  }
-  deletePhoto(photoId: string){
-    this.firestore.doc<Photo>('photos/' + photoId).delete();
-  }
-  getPhoto(photoId: string): Observable<Photo>  {
-    return this.firestore.doc<Photo>('photos/' + photoId).get().pipe(
-      map(doc => doc.data() as Photo)
-    );
-  }
-
-  getImageUrl(photoId: string): string {
-    return baseImageUrl + photoId;
-  }
+export interface PhotoService {
+  getPhotos(): Observable<Photo[]>;
+  createPhoto(photo: Photo): void;
+  updatePhoto(photo: Photo): void;
+  deletePhoto(photoId: string): void;
+  getPhoto(photoId: string): Observable<Photo>;
+  // TODO: Get image URL is temporary while we switch over from the food api to the photo one
+  getImageUrl(photoId: string): string;
 }
 
