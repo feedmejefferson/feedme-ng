@@ -1,4 +1,4 @@
-import { PHOTO_HTTP_SERVICE } from '../app/services/photo.service';
+import { PHOTO_HTTP_SERVICE, PHOTO_READONLY_SERVICE } from '../app/services/photo.service';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -6,9 +6,11 @@ import { PHOTO_HTTP_SERVICE } from '../app/services/photo.service';
 export const environment = {
   production: false,
   baseFoodUrl: '/assets/',
-  basePhotoUrl: 'http://localhost:3000/photos/',
   appetiteUrl: 'http://localhost:3000/appetite/',
+  basePhotoUrl: 'http://localhost:3000/photos/',
   photoServiceToken: PHOTO_HTTP_SERVICE,
+//  basePhotoUrl: '/assets/photos/',
+//  photoServiceToken: PHOTO_READONLY_SERVICE,
   firebase: {
     apiKey: 'AIzaSyCtjvY1oF7VFBpq1rWDt6bjfYKr1_OiHMk',
     authDomain: 'feedme-stage.firebaseapp.com',

@@ -10,6 +10,8 @@
 <footer>
   <div class="attribution">
     <p><strong>Licenses and Attributions:</strong></p>
-    <p *ngFor="let food of choice" [innerHTML]="food.attribution$ | async"></p>
+    <p *ngFor="let food of choice">
+      <app-attribution *ngIf="food.photo$ | async as photo" [photo]="photo"></app-attribution>
+    </p>
   </div>
 </footer>

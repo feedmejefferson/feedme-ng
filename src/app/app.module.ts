@@ -28,6 +28,7 @@ import { PHOTO_HTTP_SERVICE, PHOTO_READONLY_SERVICE, PHOTO_FIRESTORE_SERVICE } f
 import { PhotoHttpService } from './services/photo.http.service';
 import { PhotoFirestoreService } from './services/photo.firestore.service';
 import { PhotoReadOnlyService } from './services/photo.readonly.service';
+import { AttributionComponent } from './components/attribution/attribution.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { PhotoReadOnlyService } from './services/photo.readonly.service';
     ConsentComponent,
     UserProfileComponent,
     PhotoListComponent,
-    PhotoComponent
+    PhotoComponent,
+    AttributionComponent
   ],
   imports: [
     BrowserModule,

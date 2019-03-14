@@ -1,7 +1,8 @@
 import { Observable, EMPTY } from 'rxjs';
+import { Photo } from './photo.model';
 
 export class Food {
   id: string;
-  imageUrl?: string;
-  attribution$?: Observable<string> = EMPTY;
+  photo$: Observable<Photo>;
+  imageUrl: string;
 }

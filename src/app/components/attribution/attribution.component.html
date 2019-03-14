@@ -1,0 +1,11 @@
+<ng-container *ngIf="photo.title!==photo.originTitle">
+  {{photo.title}} -- originally titled 
+</ng-container> 
+<a href="{{photo.originUrl}}">{{photo.originTitle}}</a>
+<ng-container *ngIf="photo.author">
+  by <a href="{{photo.authorProfileUrl}}">{{photo.author}}</a>
+</ng-container> 
+<ng-container *ngIf="photo.license">
+  is licensed under <a href="{{photo.licenseUrl}}">{{photo.license}}</a>
+</ng-container>.
+ 

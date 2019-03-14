@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Food } from '../models/food.model';
+import { Photo } from '../models/photo.model';
+import { PhotoService } from '../services/photo.service';
 import { environment } from '../../environments/environment';
+import { PhotoHttpService } from './photo.http.service';
 
 const baseUrl: string = environment.baseFoodUrl;
 const baseImageUrl: string = baseUrl + 'images/';
@@ -16,7 +19,7 @@ export class FoodService {
 
   menu$: Promise<Array<string>>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject(environment.photoServiceToken) private photoService: PhotoService) {
     this.menu$ = this.http.get<Array<string>>(baseUrl + 'meta/menu.json').toPromise();
   }
 
@@ -28,11 +31,8 @@ export class FoodService {
     const outer = this;
     return {
       id: id,
-      imageUrl: `${baseImageUrl}${id}`,
-      attribution$: this.http.get(
-        baseAttributionUrl + id + '.txt',
-        {responseType: 'text'}
-      ),
+      photo$: this.photoService.getPhoto(id),
+      imageUrl: this.photoService.getImageUrl(id)
     };
   }
 }

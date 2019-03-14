@@ -1,5 +1,6 @@
 export class Photo {
     id: string;
+    imageUrl: URL;
     title: string;
     description: string;
     author: string;

@@ -7,11 +7,8 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 
-//const baseUrl: string = environment.baseFoodUrl;
-//const baseUrl = 'http://localhost:3000/photos/';
-const baseUrl = 'https://firestore.googleapis.com/v1/projects/feedme-stage/databases/(default)/documents/photos/'
-const baseImageUrl: string = 'http://localhost:4200/assets/images/';
-
+const baseUrl = environment.basePhotoUrl;
+const baseImageUrl: string = environment.baseFoodUrl + 'images/';
 
 @Injectable()
 export class PhotoReadOnlyService implements PhotoService {
