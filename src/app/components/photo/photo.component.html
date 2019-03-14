@@ -13,13 +13,13 @@
 
  
                 <label>Main Food Tags:</label>
-                <tag-input [(ngModel)]="photo.isTags" name="isTags" modelAsStrings="true" dragZone="a"></tag-input>
+                <tag-input [(ngModel)]="photo.isTags" name="isTags" modelAsStrings="true" [separatorKeys]="[',']" dragZone="a"></tag-input>
 
                 <label>Contains Food Tags:</label>
-                <tag-input [(ngModel)]="photo.containsTags" name="containsTags" modelAsStrings="true" dragZone="a"></tag-input>
+                <tag-input [(ngModel)]="photo.containsTags" name="containsTags" modelAsStrings="true" [separatorKeys]="[',']" dragZone="a"></tag-input>
 
                 <label>Additional Descriptive Tags:</label>
-                <tag-input [(ngModel)]="photo.descriptiveTags" name="descriptiveTags" modelAsStrings="true" dragZone="a"></tag-input>
+                <tag-input [(ngModel)]="photo.descriptiveTags" name="descriptiveTags" modelAsStrings="true" [separatorKeys]="[',']" dragZone="a"></tag-input>
     
                 <label for="author">Author:</label>
                 <input [disabled]="true" type="text" class="form-control" id="author" [(ngModel)]="photo.author" name="author" />
