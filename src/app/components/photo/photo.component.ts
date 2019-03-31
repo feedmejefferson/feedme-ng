@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Photo } from '../../models/photo.model';
 import { PhotoService } from '../../services/photo.service';
 import { Observable, of } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -24,7 +23,6 @@ export class PhotoComponent implements OnInit {
 
   ngOnInit() {
     this.getPhoto();
-    this.getPhotoImageUrl();
   }
 
   getPhoto(): void {
@@ -43,11 +41,5 @@ export class PhotoComponent implements OnInit {
       this.photoService.createPhoto(photo);
     }
     this.router.navigate(['/photo']);
-  }
-
-  getPhotoImageUrl(): void {
-    this.imageUrl$ = this.photo$.pipe(
-      map(photo => this.photoService.getImageUrl(photo.id))
-      );
   }
 }

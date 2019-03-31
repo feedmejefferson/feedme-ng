@@ -8,6 +8,7 @@ export const environment = {
   baseFoodUrl: '/assets/',
   appetiteUrl: 'http://localhost:3000/appetite/',
   basePhotoUrl: 'http://localhost:3000/photos/',
+  baseImageUrl: '/assets/images/',
   photoServiceToken: PHOTO_HTTP_SERVICE,
 //  basePhotoUrl: '/assets/photos/',
 //  photoServiceToken: PHOTO_READONLY_SERVICE,

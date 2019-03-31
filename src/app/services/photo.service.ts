@@ -13,7 +13,5 @@ export interface PhotoService {
   updatePhoto(photo: Photo): void;
   deletePhoto(photoId: string): void;
   getPhoto(photoId: string): Observable<Photo>;
-  // TODO: Get image URL is temporary while we switch over from the food api to the photo one
-  getImageUrl(photoId: string): string;
 }
 

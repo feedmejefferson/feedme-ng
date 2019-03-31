@@ -33,8 +33,4 @@ export class PhotoReadOnlyService implements PhotoService {
   getPhoto(photoId: string): Observable<Photo>  {
     return this.http.get<Photo>(baseUrl + photoId);
   }
-
-  getImageUrl(photoId: string): string {
-    return baseImageUrl + photoId;
-  }
 }

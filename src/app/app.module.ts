@@ -29,6 +29,7 @@ import { PhotoHttpService } from './services/photo.http.service';
 import { PhotoFirestoreService } from './services/photo.firestore.service';
 import { PhotoReadOnlyService } from './services/photo.readonly.service';
 import { AttributionComponent } from './components/attribution/attribution.component';
+import { ImageComponent } from './components/image/image.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AttributionComponent } from './components/attribution/attribution.compo
     UserProfileComponent,
     PhotoListComponent,
     PhotoComponent,
-    AttributionComponent
+    AttributionComponent,
+    ImageComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { PHOTO_FIRESTORE_SERVICE } from '../app/services/photo.service';
 export const environment = {
   production: false,
   baseFoodUrl: 'https://storage.googleapis.com/feedme-stage.appspot.com/',
+  baseImagesUrl: 'https://storage.googleapis.com/feedme-stage.appspot.com/images/',
   basePhotoUrl: 'not-used',
   appetiteUrl: 'https://us-central1-feedme-stage.cloudfunctions.net/appetite',
   photoServiceToken: PHOTO_FIRESTORE_SERVICE,

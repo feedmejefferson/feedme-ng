@@ -4,5 +4,4 @@ import { Photo } from './photo.model';
 export class Food {
   id: string;
   photo$: Observable<Photo>;
-  imageUrl: string;
 }

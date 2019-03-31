@@ -38,9 +38,5 @@ export class PhotoFirestoreService implements PhotoService {
       map(doc => doc.data() as Photo)
     );
   }
-
-  getImageUrl(photoId: string): string {
-    return baseImageUrl + photoId;
-  }
 }
 
