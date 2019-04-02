@@ -7,8 +7,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 
-const baseUrl = environment.basePhotoUrl;
-const baseImageUrl: string = environment.baseFoodUrl + 'images/';
+const baseUrl = environment.baseReadOnlyPhotoUrl;
 
 @Injectable()
 export class PhotoReadOnlyService implements PhotoService {

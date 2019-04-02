@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Photo } from '../models/photo.model';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PhotoService } from '../services/photo.service';
 
@@ -28,7 +28,8 @@ export class PhotoFirestoreService implements PhotoService {
     });
   }
   updatePhoto(photo: Photo){
-    this.firestore.doc<Photo>('photos/' + photo.id).update(photo);
+    return from(this.firestore.doc<Photo>('photos/' + photo.id).update(photo)
+    .catch(err => this.firestore.collection<Photo>('photos').doc(photo.id).set(photo)));
   }
   deletePhoto(photoId: string){
     this.firestore.doc<Photo>('photos/' + photoId).delete();

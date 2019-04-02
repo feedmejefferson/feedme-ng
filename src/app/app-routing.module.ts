@@ -26,9 +26,9 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'user', component: UserProfileComponent },
   { path: 'login', component: UserProfileComponent },
-  { path: 'photo', component: PhotoListComponent },
-  { path: 'photo/new', component: PhotoComponent },
-  { path: 'photo/:id', component: PhotoComponent },
+  { path: 'photos', component: PhotoListComponent },
+  { path: 'photos/new', component: PhotoComponent },
+  { path: 'photos/:id', component: PhotoComponent },
   // { path: '', redirectTo: '/choice', pathMatch: 'full' }
 ];
 

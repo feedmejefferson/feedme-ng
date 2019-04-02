@@ -30,6 +30,7 @@ import { PhotoFirestoreService } from './services/photo.firestore.service';
 import { PhotoReadOnlyService } from './services/photo.readonly.service';
 import { AttributionComponent } from './components/attribution/attribution.component';
 import { ImageComponent } from './components/image/image.component';
+import { PhotoFallbackService } from './services/photo.fallback.service';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ImageComponent } from './components/image/image.component';
     { provide: PHOTO_HTTP_SERVICE, useClass: PhotoHttpService },
     { provide: PHOTO_FIRESTORE_SERVICE, useClass: PhotoFirestoreService },
     { provide: PHOTO_READONLY_SERVICE, useClass: PhotoReadOnlyService },
+    PhotoFallbackService
  ],
   bootstrap: [AppComponent]
 })

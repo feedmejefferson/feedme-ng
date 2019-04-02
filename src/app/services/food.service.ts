@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Food } from '../models/food.model';
-import { PhotoService } from '../services/photo.service';
+import { PhotoService, PHOTO_READONLY_SERVICE } from '../services/photo.service';
 import { environment } from '../../environments/environment';
 
 const baseUrl: string = environment.baseFoodUrl;
@@ -14,7 +14,7 @@ export class FoodService {
 
   menu$: Promise<Array<string>>;
 
-  constructor(private http: HttpClient, @Inject(environment.photoServiceToken) private photoService: PhotoService) {
+  constructor(private http: HttpClient, @Inject(PHOTO_READONLY_SERVICE) private photoService: PhotoService) {
     this.menu$ = this.http.get<Array<string>>(baseUrl + 'meta/menu.json').toPromise();
   }
 

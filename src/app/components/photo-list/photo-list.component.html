@@ -9,10 +9,10 @@
         <tr *ngFor="let photo of photos">
     
           <td>{{photo.id}}</td>
-          <td><a [routerLink]="['/photo',photo.id]">{{photo.title}}</a></td>
+          <td><a [routerLink]="['/photos',photo.id]">{{photo.title}}</a></td>
         </tr>
       </tbody>
     </table>
-    <button [routerLink]="['/photo','new']" type="submit" class="btn btn-success">New</button>
+    <button [routerLink]="['/photos','new']" type="submit" class="btn btn-success">New</button>
   </div>
 </main> 

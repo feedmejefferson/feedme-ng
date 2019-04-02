@@ -4,6 +4,7 @@ import { Photo } from '../../models/photo.model';
 import { PhotoService } from '../../services/photo.service';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { PhotoFallbackService } from 'src/app/services/photo.fallback.service';
 
 @Component({
   selector: 'app-photo',
@@ -17,7 +18,7 @@ export class PhotoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute, 
-    @Inject(environment.photoServiceToken) private photoService: PhotoService,         
+    @Inject(PhotoFallbackService) private photoService: PhotoService,         
     private router: Router
     ) { }
 
@@ -40,6 +41,6 @@ export class PhotoComponent implements OnInit {
     } else {
       this.photoService.createPhoto(photo);
     }
-    this.router.navigate(['/photo']);
+    this.router.navigate(['/photos']);
   }
 }

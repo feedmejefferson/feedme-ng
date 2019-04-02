@@ -1,7 +1,7 @@
 <main role="main" class="flex-shrink-0">
-    <div class="container">
-        <img *ngIf="imageUrl$ | async as imageUrl" src="{{imageUrl}}" />
-        <form *ngIf="photo$ | async as photo">
+    <div class="container" *ngIf="photo$ | async as photo">
+        <app-image [image]="photo.id"></app-image>
+        <form>
             <div class="form-group">
                 <button (click)="updatePhoto(photo)" type="submit" class="btn btn-success">Submit</button>
 
