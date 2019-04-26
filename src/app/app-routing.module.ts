@@ -17,7 +17,7 @@ export const RANDOM_CHOICE_TOKEN = new InjectionToken<ChoiceService>('RandomChoi
 export const DECISION_TREE_TOKEN = new InjectionToken<ChoiceService>('DecisionTreeService');
 
 const routes: Routes = [
-  { path: '', component: ChoiceRedirectComponent, pathMatch: 'full', data: {requiredService: RANDOM_CHOICE_TOKEN}},
+  { path: '', component: ChoiceRedirectComponent, pathMatch: 'full', data: {requiredService: DECISION_TREE_TOKEN}},
   { path: 'ff', component: ChoiceRedirectComponent, data: {requiredService: RANDOM_CHOICE_TOKEN}},
   { path: 'ff/:step/:id1/:id2', component: ChoiceComponent, data: {requiredService: RANDOM_CHOICE_TOKEN}},
   { path: 'cb', component: ChoiceRedirectComponent, data: {requiredService: DECISION_TREE_TOKEN}},
