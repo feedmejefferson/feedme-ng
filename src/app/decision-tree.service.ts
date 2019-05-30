@@ -52,8 +52,27 @@ export class DecisionTreeService {
           name = TreeScaler.findLeafForPattern(node, [0], randomAddress).value;
           choiceRoute.push(name);
 
-          name = TreeScaler.findLeafForPattern(node, [1], randomAddress).value;
-          choiceRoute.push(name);
+          /* Hack to avoid duplicates:
+          Because we've been building binary search trees with redundancy --
+          meaning each half contains more than 50% of all nodes, some nodes
+          will appear on both sides of the tree and it's not only possible
+          that we would select the same node from both sides, but because we try
+          to find the closest matches, it's actually more likely than it would be
+          if we chose randomly. However we only use redundant splits in the first
+          few branches, not the last ones, so we should never find the same 
+          two instances of the same node in a branch of 4 or less nodes. 
+          */
+          let leafTwo = TreeScaler.findLeafForPattern(node, [1], randomAddress);
+          if(leafTwo.value != name) {
+            choiceRoute.push(leafTwo.value);
+          } else {
+            let addr = leafTwo.address;
+            addr[addr.length-2] = !addr[addr.length-2] ? 1 : 0; 
+            leafTwo = TreeScaler.findLeafForPattern(treeMap, leafTwo.address, [0]); 
+            choiceRoute.push(leafTwo.value);
+          }
+          //name = TreeScaler.findLeafForPattern(node, [1], randomAddress).value;
+          //choiceRoute.push(name);
 
           resolve(choiceRoute);
         }
